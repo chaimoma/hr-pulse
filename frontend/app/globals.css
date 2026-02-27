@@ -3,16 +3,34 @@
 @tailwind utilities;
 
 :root {
-    --background: #ffffff;
-    --foreground: #171717;
+    --background: #0f172a;
+    --foreground: #f8fafc;
+    --card-bg: #1e293b;
+    --card-border: #334155;
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
 }
 
 body {
     color: var(--foreground);
-    background: #f8fafc;
-    font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
-.auth-card-gradient {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+/* Custom Utilities */
+.glass-effect {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.input-dark {
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #f8fafc;
+}
+
+.input-dark:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
 }
