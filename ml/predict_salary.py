@@ -33,8 +33,8 @@ preprocessor = ColumnTransformer(
 model = Pipeline(steps=[
     ("preprocessor", preprocessor),
     ("regressor", RandomForestRegressor(
-        n_estimators=500,
-        max_depth=15,
+        n_estimators=200,
+        max_depth=20,
         random_state=42
     ))
 ])
