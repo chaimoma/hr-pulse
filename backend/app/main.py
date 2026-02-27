@@ -9,8 +9,10 @@ from .database import Base, engine, get_db
 from .models import User
 from .schemas import UserCreate, UserLogin, JobInput
 from .auth import hash_password,verify_password,create_access_token,verify_token
+from .tracing import init_tracing
 
 app = FastAPI(title="HR Pulse API")
+init_tracing(app)
 Base.metadata.create_all(bind=engine)
 app.add_middleware(
     CORSMiddleware,
