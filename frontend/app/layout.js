@@ -11,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <body className="antialiased text-gray-900 bg-[#f8fafc]">
+            <body className="antialiased text-gray-900 bg-[#0f172a]">
                 <AuthProvider>
                     <ProtectedRoute>
                         <div className="min-h-screen flex flex-col">
@@ -19,8 +19,8 @@ export default function RootLayout({ children }) {
                             <main className="flex-grow">
                                 {children}
                             </main>
-                            <footer className="py-8 text-center text-sm text-gray-400 font-medium">
-                                &copy; {new Date().getFullYear()} HR-PULSE. All rights reserved.
+                            <footer className="py-6 border-t border-gray-100 text-center text-xs text-gray-400">
+                                &copy; {new Date().getFullYear()} HR-PULSE
                             </footer>
                         </div>
                     </ProtectedRoute>
