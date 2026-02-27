@@ -1,14 +1,19 @@
+import os
+
+os.environ["DB_URL"] = "sqlite:///./test.db"
+os.environ["SECRET_KEY"] = "test_secret_for_ci_only"
+
 from fastapi.testclient import TestClient
 from backend.app.main import app
 
 client = TestClient(app)
 
 def test_predict_salary():
-    #login as admin
+    # login as admin
     login_response = client.post("/login", json={"username": "admin", "password": "admin"})
     token = login_response.json()["access_token"]
     
-    #test Prediction
+    # test Prediction
     payload = {
         "job_title": "Data Scientist",
         "job_description": "We are looking for a Python expert with ML knowledge.",
