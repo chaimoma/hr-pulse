@@ -42,7 +42,7 @@ jobs:
           pip install pytest pytest-asyncio
 
       - name: Run Pytest
-        run: pytest backend/tests
+        run: python -m pytest backend/tests
 
   build:
     name: Docker Build Verification
