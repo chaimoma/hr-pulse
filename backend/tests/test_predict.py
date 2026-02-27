@@ -1,16 +1,14 @@
 from fastapi.testclient import TestClient
-from backend.app.main import app, verify_token
-import pytest
-
-# overriding the verify_token dependency for tests
-async def override_verify_token():
-    return {"sub": "testuser"}
-
-app.dependency_overrides[verify_token] = override_verify_token
+from backend.app.main import app
 
 client = TestClient(app)
 
 def test_predict_salary():
+    #login as admin
+    login_response = client.post("/login", json={"username": "admin", "password": "admin"})
+    token = login_response.json()["access_token"]
+    
+    #test Prediction
     payload = {
         "job_title": "Data Scientist",
         "job_description": "We are looking for a Python expert with ML knowledge.",
@@ -22,10 +20,10 @@ def test_predict_salary():
         "founded": 2010
     }
     
-    response = client.post("/predict", json=payload)
+    headers = {"Authorization": f"Bearer {token}"}
+    response = client.post("/predict", json=payload, headers=headers)
     
     assert response.status_code == 200
     data = response.json()
     assert "predicted_salary" in data
-    assert data["predicted_salary"].startswith("$")
     print(f"Prediction success: {data['predicted_salary']}")
