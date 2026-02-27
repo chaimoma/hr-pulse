@@ -19,53 +19,49 @@ export default function RegisterPage() {
 
         try {
             await authApi.register(username, password);
-            // Redirect to login after successful registration
             router.push('/login?registered=true');
         } catch (err) {
-            setError(err.message || 'Registration failed. Username might already exist.');
+            setError(err.message || 'Registration failed.');
         } finally {
             setLoading(false);
         }
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-[#f8fafc] px-4">
-            <div className="max-w-md w-full">
-                <div className="text-center mb-10">
-                    <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-green-500 to-emerald-700 rounded-3xl shadow-2xl mb-6 transform hover:rotate-6 transition-transform duration-300">
-                        <span className="text-white font-black text-4xl">H</span>
-                    </div>
-                    <h1 className="text-4xl font-black text-gray-900 tracking-tight mb-2">Create Account</h1>
-                    <p className="text-gray-500 font-medium">Join HR-PULSE and start managing better</p>
+        <div className="min-h-screen flex items-center justify-center bg-[#0f172a] px-4">
+            <div className="max-w-sm w-full">
+                <div className="text-center mb-8">
+                    <h1 className="text-3xl font-black text-white mb-2 tracking-tight">Create Account</h1>
+                    <p className="text-sm text-gray-500">Join the professional HR-PULSE platform</p>
                 </div>
 
-                <div className="bg-white p-10 rounded-[2.5rem] shadow-xl border border-gray-100 ring-1 ring-black/5">
-                    <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="bg-[#1e293b] p-8 rounded-2xl border border-gray-800 shadow-2xl">
+                    <form onSubmit={handleSubmit} className="space-y-5">
                         {error && (
-                            <div className="p-4 bg-red-50 border-l-4 border-red-500 text-red-700 text-sm font-medium rounded-r-lg animate-pulse">
+                            <div className="p-3 bg-red-900/20 text-red-400 text-xs rounded border border-red-900/50">
                                 {error}
                             </div>
                         )}
 
-                        <div className="space-y-2">
-                            <label className="text-sm font-bold text-gray-700 ml-1">Username</label>
+                        <div>
+                            <label className="block text-[10px] font-bold text-gray-500 mb-1.5 uppercase tracking-widest">Username</label>
                             <input
                                 type="text"
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
-                                className="w-full px-5 py-4 bg-gray-50 border border-transparent rounded-2xl focus:ring-4 focus:ring-green-100 focus:bg-white focus:border-green-500 outline-none transition-all duration-200 text-gray-900 placeholder-gray-400"
-                                placeholder="Choose a unique username"
+                                className="w-full bg-[#0f172a] border border-gray-700 text-white px-4 py-2.5 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none text-sm transition-all placeholder-gray-600"
+                                placeholder="Username"
                                 required
                             />
                         </div>
 
-                        <div className="space-y-2">
-                            <label className="text-sm font-bold text-gray-700 ml-1">Password</label>
+                        <div>
+                            <label className="block text-[10px] font-bold text-gray-500 mb-1.5 uppercase tracking-widest">Password</label>
                             <input
                                 type="password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className="w-full px-5 py-4 bg-gray-50 border border-transparent rounded-2xl focus:ring-4 focus:ring-green-100 focus:bg-white focus:border-green-500 outline-none transition-all duration-200 text-gray-900 placeholder-gray-400"
+                                className="w-full bg-[#0f172a] border border-gray-700 text-white px-4 py-2.5 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none text-sm transition-all placeholder-gray-600"
                                 placeholder="••••••••"
                                 required
                             />
@@ -74,25 +70,15 @@ export default function RegisterPage() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full py-4 px-6 bg-gradient-to-r from-green-600 to-emerald-700 hover:from-green-700 hover:to-emerald-800 text-white font-bold rounded-2xl shadow-lg hover:shadow-green-500/25 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform active:scale-[0.98]"
+                            className="w-full py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-all disabled:opacity-50 text-sm border border-blue-500 shadow-lg shadow-blue-900/30"
                         >
-                            {loading ? (
-                                <div className="flex items-center justify-center">
-                                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
-                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                    </svg>
-                                    Creating account...
-                                </div>
-                            ) : (
-                                'Sign Up'
-                            )}
+                            {loading ? 'Creating account...' : 'Sign Up'}
                         </button>
                     </form>
                 </div>
 
-                <p className="mt-8 text-center text-sm text-gray-500">
-                    Already have an account? <Link href="/login" className="text-green-600 font-bold hover:underline">Sign in</Link>
+                <p className="mt-8 text-center text-xs text-gray-500">
+                    Already have an account? <Link href="/login" className="text-blue-400 font-bold hover:underline">Sign in</Link>
                 </p>
             </div>
         </div>
